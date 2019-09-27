@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>当老师接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">当老师接口自动化测试报告</h1>
+<p class='attribute'><strong>测试人员 : </strong> 赵亚静</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-09-23 17:20:54</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:15.956000</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 17，通过 17，通过率= 100.00%</p>
+
+<p class='description'>用例执行情况：</p>
+</div>
+
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 17 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 17 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>appgoods.test_case2.TestApp</td>
+    <td class="text-center">3</td>
+    <td class="text-center">3</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',3)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test01_login_app: 测试登录app</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test02_mycourse: app我的课程列表</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <script>
+        if("通过"=="通过"){
+            document.write("<button id='btn_pt1_2' type='button'  class='btn btn-danger btn-xs' data-toggle='collapse' style='background-color:#5cb85c' data-target='#div_pt1_2'>通过</button>")
+        }
+        else{
+            document.write("<button id='btn_pt1_2' type='button'  class='btn btn-danger btn-xs' data-toggle='collapse' style='background-color:#d9534f' data-target='#div_pt1_2'>通过</button>")
+        }
+    </script>
+    <div id='div_pt1_2' class="collapse in">
+    <pre>
+    
+pt1_2: 380e8ef7-410a-4322-ad21-55d947476252
+uN31k3KAhKI=
+{"msg":"success","code":200,"data":[{"userCourseId":4557920,"courseId":2084,"goodsId":2527,"name":"多贝云测试 42班","thumbnail":"http://dlsuser-test.oss-cn-beijing.aliyuncs.com/file-7c7e7ea097bb45a4919d102dcb5f8f0e.jpg","count":94,"end":94,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1568892593583,"updateTime":1568892593583,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1563171243000,"endTime":1569772800000},{"userCourseId":4556952,"courseId":2378,"goodsId":2830,"name":"wjn客服03","thumbnail":"http://dlsuser-test.oss-cn-beijing.aliyuncs.com/file-e7912ec5aa67414f81acbc8a083a474f.png","count":2,"end":2,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1567675613965,"updateTime":1567675613965,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1567236902000,"endTime":1597334400000},{"userCourseId":4554987,"courseId":2247,"goodsId":2712,"name":"34232432","thumbnail":"http://dlsuser-test.oss-cn-beijing.aliyuncs.com/file-810a0c222aa54994a080a504d47b13f2.jpg","count":19,"end":19,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1566541624618,"updateTime":1566541624618,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":1,"startLearning":true,"parentId":0,"startTime":1565319687000,"endTime":1567180800000},{"userCourseId":4554512,"courseId":1946,"goodsId":2406,"name":"pp的课程测试 2班","thumbnail":"http://dlsuser-test.oss-cn-beijing.aliyuncs.com/file-44d1b26e2c9f45aea42e5fd54d477478.png","count":13,"end":13,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1565767473204,"updateTime":1565767473204,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1562118479000,"endTime":1564537676000},{"userCourseId":4554513,"courseId":1672,"goodsId":1928,"name":"2019教师招聘考试教育综合知识通关班【特岗通用】七期","thumbnail":"http://files.danglaoshi.net/1559643664912.png","count":48,"end":48,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":299.00,"buyDate":1565767473204,"updateTime":1565767473204,"top":0,"enableDel":0,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1561027800000,"endTime":1566480000000},{"userCourseId":4554514,"courseId":1848,"goodsId":2110,"name":"2019下教师资格证笔试通关班四期【中学段】","thumbnail":"http://files.danglaoshi.net/1560500732655.png","count":41,"end":41,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":198.00,"buyDate":1565767473204,"updateTime":1565767473204,"top":0,"enableDel":0,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":1,"startLearning":true,"parentId":0,"tag":"科一+科二","startTime":1562151600000,"endTime":1572181200000},{"userCourseId":4554438,"courseId":2245,"goodsId":2710,"name":"课程奖励测试勿动","thumbnail":"http://dlsuser-test.oss-cn-beijing.aliyuncs.com/file-107c966c00c04b04b17fe850b118d1da.jpg","count":27,"end":27,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1565698880607,"updateTime":1565698880607,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":1,"startLearning":true,"parentId":0,"startTime":1565251936000,"endTime":1577721600000},{"userCourseId":12328,"courseId":114,"goodsId":1027,"name":"2017年陕西特岗教师招聘考试（大学英语）","thumbnail":"http://files.danglaoshi.net/image/b9e46ebf-77a1-4881-bf03-f1f63e8adf6f.png","count":4,"end":4,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1546590555745,"updateTime":1546590555745,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1496797200000,"endTime":1496919600000},{"userCourseId":12241,"courseId":179,"goodsId":1112,"name":"资格证笔试：综合素质真题秀","thumbnail":"http://files.danglaoshi.net/image/80aa5482-8209-4262-8ad8-bbc295e4d094.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":1.00,"buyDate":1545893518410,"updateTime":1545893518410,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1504177200000,"endTime":1504180800000},{"userCourseId":11408,"courseId":140,"goodsId":1069,"name":"资格证笔试 | 教育学必考核心人物","thumbnail":"http://files.danglaoshi.net/image/45c458eb-1e0f-4655-a423-66db75ba4898.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1543893845000,"updateTime":1543893845000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1500462000000,"endTime":1500465600000},{"userCourseId":10907,"courseId":110,"goodsId":1023,"name":"资格证笔试 | 2017年下教师资格证小学笔试通关班一期","thumbnail":"http://files.danglaoshi.net/image/11f712df-da95-4db9-b9c8-7272e282c0ef.png","count":67,"end":67,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":198.00,"buyDate":1540029673885,"updateTime":1540029673885,"top":0,"enableDel":0,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":false,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1483488000000,"endTime":1509206400000},{"userCourseId":10663,"courseId":104,"goodsId":1016,"name":"教资面试 ∣ 结构化面试课程","thumbnail":"http://files.danglaoshi.net/image/ce7983b5-1801-4923-b1e5-fdcc89a1cc05.png","count":6,"end":6,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1537874991000,"updateTime":1537874991000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1492683530000,"endTime":1496225937000},{"userCourseId":10082,"courseId":97,"goodsId":1000,"name":"小学语文 ∣ 2017年上半年教师资格证面试课程","thumbnail":"http://files.danglaoshi.net/image/95f3f62b-4a89-4066-b1df-1abc2a71bc81.png","count":4,"end":4,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1534153725270,"updateTime":1534153725270,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1493788474000,"endTime":1496207677000},{"userCourseId":9172,"courseId":26,"goodsId":53,"name":"名师真题课堂-2016年下半年科目二心理学客观题解析","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_26_a278841ab92a8936faea3122f05b5eaacf21471b.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1530778327000,"updateTime":1530778327000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1481731200000,"endTime":1481731200000},{"userCourseId":8602,"courseId":93,"goodsId":157,"name":"小学数学 ∣ 2017年上半年教师资格证面试课程","thumbnail":"http://files.danglaoshi.net/image/7dfaf7e7-2cae-4f25-9513-f7135b07d3e5.png","count":4,"end":4,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1530513483000,"updateTime":1530513483000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1493788070000,"endTime":1496207272000},{"userCourseId":8083,"courseId":6,"goodsId":22,"name":"全真模拟考试解析课(小学)","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_6_812abae89751c13961ad892d9ec7ac03ff268308.jpg","count":2,"end":2,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1530265030000,"updateTime":1530265030000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1476892800000,"endTime":1524672000000},{"userCourseId":7245,"courseId":10,"goodsId":26,"name":"教师资格证笔试备考三把斧","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_10_7d15d3507bba19631ae28ac7e395d9d1f43866bd.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1529401303000,"updateTime":1529401303000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1480262400000,"endTime":1480262400000},{"userCourseId":6742,"courseId":92,"goodsId":156,"name":"小学美术 ∣ 2017年上半年教师资格证面试课程","thumbnail":"http://files.danglaoshi.net/image/bb50c806-0028-40c0-928b-d0e946483f72.png","count":4,"end":4,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1529040890000,"updateTime":1529040890000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1493787995000,"endTime":1496207199000},{"userCourseId":6478,"courseId":11,"goodsId":28,"name":"教师资格证考试为什么不难","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_11_055aba13c38926451514647e616f058b90697013.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1529029287000,"updateTime":1529029287000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1480262400000,"endTime":1480262400000},{"userCourseId":6005,"courseId":66,"goodsId":96,"name":"专治记忆差-简答题记忆技巧(教育学）","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_66_852b919b4a4c0a788bf76081dd1952bd6c835b8b.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1528888771000,"updateTime":1528888771000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1487779200000,"endTime":1487779200000},{"userCourseId":5813,"courseId":5,"goodsId":20,"name":"2016教师资格证笔试冲刺班(一天提高50分) [小学段]","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_5_df8b2ebccfacb379ec6df5a6430ad5b5964eab4b.png","count":2,"end":2,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":98.00,"buyDate":1528886095000,"updateTime":1528886095000,"top":0,"enableDel":0,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1476028800000,"endTime":1477584000000},{"userCourseId":5557,"courseId":16,"goodsId":35,"name":"2017年上半年教资笔试考点分析及备考指导系列三","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_16_0430001eda5386a72e743001d22c8113d69edb6b.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1528883561000,"updateTime":1528883561000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1480780800000,"endTime":1480780800000},{"userCourseId":4815,"courseId":87,"goodsId":143,"name":"资格证面试 ∣ 面试备考全面布防","thumbnail":"http://files.danglaoshi.net/image/ed07d557-cbf9-4fb5-a3ed-5965727cd313.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1528881365000,"updateTime":1528881365000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1492430400000,"endTime":1492434000000},{"userCourseId":4214,"courseId":28,"goodsId":55,"name":"名师真题课堂-2016年上半年科目二心理学客观题解析","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_28_ecd857fd3780363073d718415ff70f463792137b.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1524469858935,"updateTime":1524469858935,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1482163200000,"endTime":1482163200000},{"userCourseId":3929,"courseId":77,"goodsId":130,"name":"2017上半年教师资格证笔试在线估分(小学段)","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_77_dc1e3da2f8ce009b83393879c7d35ce20695639a.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1524469306753,"updateTime":1524469306753,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1489161600000,"endTime":1489161600000},{"userCourseId":3928,"courseId":75,"goodsId":125,"name":"宋氏“话聊”专治考前综合症","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_75_8a9ee38082081b6db991cf939cd24e525fef7a72.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1524469306752,"updateTime":1524469306752,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1489075200000,"endTime":1489075200000},{"userCourseId":3746,"courseId":46,"goodsId":71,"name":"2017教师资格证笔试备考策略(二)","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_46_324c0fa8ab6c0eba340135be39ffd64558d92fbb.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1523861383000,"updateTime":1523861383000,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":1,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1484496000000,"endTime":1484496000000},{"userCourseId":3404,"courseId":63,"goodsId":93,"name":"2017教资笔试一元拯救计划(包邮)","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_63_852b919b4a4c0a788bf76081dd1952bd6c835b8b.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":1.00,"buyDate":1521192525909,"updateTime":1521192525909,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1487779200000,"endTime":1487865600000},{"userCourseId":3332,"courseId":69,"goodsId":107,"name":"名师解析课-2017教资笔试模考最终季(中学段)","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_69_735a20fa01d064c04f00090f34254cda476e0021.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1521095501079,"updateTime":1521095501079,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1488643200000,"endTime":1488643200000},{"userCourseId":3265,"courseId":68,"goodsId":106,"name":"名师解析课-2017教资笔试模考最终季(小学段)","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_68_735a20fa01d064c04f00090f34254cda476e0021.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1521094741278,"updateTime":1521094741278,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1488643200000,"endTime":1488643200000},{"userCourseId":2433,"courseId":37,"goodsId":65,"name":"名师真题课堂-2015年下半年科目一客观题解析","thumbnail":"http://pic.danglaoshi.net/live/course/teachers_37_441bcc11f3a51537593feafe368335a1b1792f14.png","count":1,"end":1,"rate":1.00,"showProgress":false,"status":2,"day":false,"money":0.00,"buyDate":1513411844140,"updateTime":1513411844140,"top":0,"enableDel":1,"enableTop":1,"expired":0,"presentCourse":0,"online":1,"scholarShip":0,"payComplated":true,"allSchedulesNotShowTime":false,"courseCate":0,"startLearning":false,"parentId":0,"startTime":1483459200000,"endTime":1483459200000}],"timestamp":1569230472849}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_courseDetail: app我的课程详情</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <script>
+        if("通过"=="通过"){
+            document.write("<button id='btn_pt1_3' type='button'  class='btn btn-danger btn-xs' data-toggle='collapse' style='background-color:#5cb85c' data-target='#div_pt1_3'>通过</button>")
+        }
+        else{
+            document.write("<button id='btn_pt1_3' type='button'  class='btn btn-danger btn-xs' data-toggle='collapse' style='background-color:#d9534f' data-target='#div_pt1_3'>通过</button>")
+        }
+    </script>
+    <div id='div_pt1_3' class="collapse in">
+    <pre>
+    
+pt1_3: bc5fa1a4-bdd8-443a-a8e9-2b59a5a048b7
+Rpc1QZbs+Du=
+{"msg":"success","code":200,"data":{"scheduleList":[{"courseScheduleId":248,"scheduleName":"5月4日小学数学","courseId":93,"courseName":"小学数学 ∣ 2017年上半年教师资格证面试课程","teacherId":20,"teacherName":"王康","startTime":1493895600000,"endTime":1493902800000,"scene":1,"isTrial":0,"isScheduleGroup":0,"showTime":1,"scheduleSupportId":248,"supportType":2,"roomId":"jz247643c938834dea89c838e43e13a13d","live":true,"liveStatus":2,"convertStatus":1,"liveParams":"{\"roomId\":\"jz247643c938834dea89c838e43e13a13d\",\"video\":0}","sort":0,"isShowRedFlower":0,"commentNumber":0,"isAttachment":false,"homeStatus":0,"finishStatus":0,"isShow":0},{"courseScheduleId":262,"scheduleName":"5月8日小学数学","courseId":93,"courseName":"小学数学 ∣ 2017年上半年教师资格证面试课程","teacherId":20,"teacherName":"王康","startTime":1494241200000,"endTime":1494248400000,"scene":1,"isTrial":0,"isScheduleGroup":0,"showTime":1,"scheduleSupportId":262,"supportType":2,"roomId":"jzc895b355cb8b4165978e68939cd3e92b","live":true,"liveStatus":2,"convertStatus":1,"liveParams":"{\"roomId\":\"jzc895b355cb8b4165978e68939cd3e92b\",\"video\":0}","sort":0,"isShowRedFlower":0,"commentNumber":0,"isAttachment":false,"homeStatus":0,"finishStatus":0,"isShow":0},{"courseScheduleId":277,"scheduleName":"5月10日小学数学","courseId":93,"courseName":"小学数学 ∣ 2017年上半年教师资格证面试课程","teacherId":20,"teacherName":"王康","startTime":1494414000000,"endTime":1494421200000,"scene":1,"isTrial":0,"isScheduleGroup":0,"showTime":1,"scheduleSupportId":277,"supportType":2,"roomId":"jzef3fc4168728488d80967512945b30d8","live":true,"liveStatus":2,"convertStatus":1,"liveParams":"{\"roomId\":\"jzef3fc4168728488d80967512945b30d8\",\"video\":0}","sort":0,"isShowRedFlower":0,"commentNumber":0,"isAttachment":false,"homeStatus":0,"finishStatus":0,"isShow":0},{"courseScheduleId":290,"scheduleName":"5月12日小学数学","courseId":93,"courseName":"小学数学 ∣ 2017年上半年教师资格证面试课程","teacherId":20,"teacherName":"王康","startTime":1494586800000,"endTime":1494594000000,"scene":1,"isTrial":0,"isScheduleGroup":0,"showTime":1,"scheduleSupportId":290,"supportType":2,"roomId":"jz83113147070445628786f3cc7a4af1d9","live":true,"liveStatus":2,"convertStatus":1,"liveParams":"{\"roomId\":\"jz83113147070445628786f3cc7a4af1d9\",\"video\":0}","sort":0,"isShowRedFlower":0,"commentNumber":0,"isAttachment":false,"homeStatus":0,"finishStatus":0,"isShow":0}],"haveServicePro":false,"name":"小学数学 ∣ 2017年上半年教师资格证面试课程","courseImage":"http://files.danglaoshi.net/image/7dfaf7e7-2cae-4f25-9513-f7135b07d3e5.png","qq":"594204156","keys":{"iphone":"97340ab63143c0f634b57f2c3f3aad307fa377918137b5f60128309699f4171d","android":"JY1df2j3kfIKVPhBwqawhWt8ober8Cn7","web":"97340ab63143c0f634b57f2c3f3aad307fa377918137b5f60128309699f4171d"},"ascServiceType":1,"startTime":1493788070000,"endTime":1496207272000,"dividingClass":0,"courseCount":4,"scholarShip":0,"needHomework":false,"needVodRed":false,"needServiceRed":false,"needShippingRed":false,"needClassOverHomeworkRed":false,"needShippingShow":false,"needClassOverHomeworkShow":false,"needDatumShow":false,"oldClassData":false,"isShow":0,"passRateUrl":"","payComplated":true,"isCertificate":false,"allSchedulesNotShowTime":false,"courseCate":0,"presentCourse":1,"goodsId":157,"needBuyQq":false,"isProtocolCourse":0,"listenGift":0},"timestamp":1569230473395}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>newgoods.test_case1.TestNewGoods</td>
+    <td class="text-center">14</td>
+    <td class="text-center">14</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',14)" class="detail" id='c2'>详细</a></td>
+</tr>
+
+<tr id='pt2_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test01_login: 测试后台登录</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <script>
+        if("通过"=="通过"){
+            document.write("<button id='btn_pt2_1' type='button'  class='btn btn-danger btn-xs' data-toggle='collapse' style='background-color:#5cb85c' data-target='#div_pt2_1'>通过</button>")
+        }
+        else{
+            document.write("<button id='btn_pt2_1' type='button'  class='btn btn-danger btn-xs' data-toggle='collapse' style='background-color:#d9534f' data-target='#div_pt2_1'>通过</button>")
+        }
+    </script>
+    <div id='div_pt2_1' class="collapse in">
+    <pre>
+    
+pt2_1: {'code': 0, 'msg': 'success', 'data': {'token': '361f912d041f544f5m7ac17cfb623fc9v17', 'expire': 43200}}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt2_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test02_new_course_1: 测试新建课程</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test02_new_course_2: 测试新建课程</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test02_new_course_3: 测试新建课程</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test02_new_course_4: 测试新建课程</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_1: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_2: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_3: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_4: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_5: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_11' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_6: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_12' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_7: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_13' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test03_newschedule_8: 测试新建课时</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt2_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test04_creat_schedule_work</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>17</td>
+    <td>17</td>
+    <td>0</td>
+    <td>0</td>
+    <td>通过率：100.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+
+</body>
+</html>
